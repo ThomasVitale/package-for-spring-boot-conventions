@@ -1,0 +1,96 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: spring-boot-conventions.packages.kadras.io.0.0.0
+spec:
+  refName: spring-boot-conventions.packages.kadras.io
+  releasedAt: null
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - git: {}
+      template:
+      - ytt:
+          paths:
+          - config
+      - kbld: {}
+  valuesSchema:
+    openAPIv3:
+      additionalProperties: false
+      properties:
+        namespace:
+          type: string
+          description: The namespace where to install the Spring Boot Conventions
+          default: spring-boot-conventions
+        resources:
+          type: object
+          additionalProperties: false
+          description: Resource configuration for the Convention Server
+          properties:
+            limits:
+              type: object
+              additionalProperties: false
+              description: Resource limits
+              properties:
+                cpu:
+                  type: string
+                  description: CPU limits
+                  default: 100m
+                memory:
+                  type: string
+                  description: Memory limits
+                  default: 256Mi
+            requests:
+              type: object
+              additionalProperties: false
+              description: Resource requests
+              properties:
+                cpu:
+                  type: string
+                  description: CPU requests
+                  default: 100m
+                memory:
+                  type: string
+                  description: Memory requests
+                  default: 20Mi
+  version: 0.0.0
+
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  creationTimestamp: null
+  name: spring-boot-conventions.packages.kadras.io
+spec:
+  displayName: spring-boot-conventions
+  longDescription: "The Spring Boot Convention Server works with the Cartographer Convention Controller
+    to apply best-practices to workloads at runtime by understanding the developer's intent."
+  shortDescription: "Spring Boot Convention Server for Cartographer."
+  maintainers:
+  - name: Thomas Vitale
+  providerName: Arktonix
+  categories:
+    - ci/cd
+    - configuration
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kctrl.carvel.dev/local-fetch-0: .
+  creationTimestamp: null
+  name: spring-boot-conventions
+spec:
+  packageRef:
+    refName: spring-boot-conventions.packages.kadras.io
+    versionSelection:
+      constraints: 0.0.0
+  serviceAccountName: kadras-install-sa
+status:
+  conditions: null
+  friendlyDescription: ""
+  observedGeneration: 0

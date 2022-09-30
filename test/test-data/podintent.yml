@@ -1,0 +1,11 @@
+---
+apiVersion: conventions.carto.run/v1alpha1
+kind: PodIntent
+metadata:
+  name: band-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: workload
+        image: ghcr.io/thomasvitale/band-service@sha256:1fdd6f5c8783270be90a369c75ac76a7f93d3b78867322b4db3eeac9baa2737c

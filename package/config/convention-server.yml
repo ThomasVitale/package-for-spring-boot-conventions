@@ -1,0 +1,117 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: #@ data.values.namespace
+
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: spring-boot-selfsigned-issuer
+  namespace: #@ data.values.namespace
+spec:
+  selfSigned: {}
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: spring-boot-webhook-cert
+  namespace: #@ data.values.namespace
+spec:
+  subject:
+    organizations:
+      - Arktonix
+  commonName: #@ "spring-boot-webhook." + data.values.namespace + ".svc"
+  dnsNames:
+    - #@ "spring-boot-webhook." + data.values.namespace + ".svc"
+    - #@ "spring-boot-webhook." + data.values.namespace + ".svc.cluster.local"
+  issuerRef:
+    kind: Issuer
+    name: spring-boot-selfsigned-issuer
+  secretName: spring-boot-webhook-cert
+  revisionHistoryLimit: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-webhook
+  namespace: #@ data.values.namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-webhook
+  template:
+    metadata:
+      labels:
+        app: spring-boot-webhook
+    spec:
+      containers:
+      - name: webhook
+        image: ghcr.io/arktonix/spring-boot-conventions@sha256:6bf438a3597dbdd4381a4ae60bc3e2ef9cb4e91ddcb62b7c6d5432b920dd4955
+        env:
+          - name: PORT
+            value: "8443"
+        ports:
+          - containerPort: 8443
+            name: webhook
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            port: webhook
+            path: /healthz
+        readinessProbe:
+          httpGet:
+            scheme: HTTPS
+            port: webhook
+            path: /healthz
+        resources:
+          limits:
+            cpu: #@ data.values.resources.limits.cpu
+            memory: #@ data.values.resources.limits.memory
+          requests:
+            cpu: #@ data.values.resources.requests.cpu
+            memory: #@ data.values.resources.requests.memory
+        volumeMounts:
+          - name: certs
+            mountPath: /config/certs
+            readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            defaultMode: 420
+            secretName: spring-boot-webhook-cert
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-webhook
+  namespace: #@ data.values.namespace
+spec:
+  selector:
+    app: spring-boot-webhook
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: webhook
+
+---
+apiVersion: conventions.carto.run/v1alpha1
+kind: ClusterPodConvention
+metadata:
+  name: spring-boot-convention
+spec:
+  webhook:
+    certificate:
+      name: spring-boot-webhook-cert
+      namespace: #@ data.values.namespace
+    clientConfig:
+      service:
+        name: spring-boot-webhook
+        namespace: #@ data.values.namespace
