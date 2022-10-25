@@ -1,6 +1,6 @@
 # Spring Boot Conventions
 
-This project provides a [Carvel package](https://carvel.dev/kapp-controller/docs/latest/packaging) for the [Spring Boot Convention Server](ghcr.io/arktonix/spring-boot-conventions), a component that works with the [Cartographer Convention Controller](https://github.com/vmware-tanzu/cartographer-conventions) to apply best-practices to workloads at runtime by understanding the developer's intent. It is a key component to build application-aware platforms rather than forcing applications to be platform-aware.
+This project provides a [Carvel package](https://carvel.dev/kapp-controller/docs/latest/packaging) for the [Spring Boot Convention Server](ghcr.io/arktonix/spring-boot-conventions), a component that works with [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) to apply best-practices to workloads at runtime by understanding the developer's intent. It is a key component to build application-aware platforms rather than forcing applications to be platform-aware.
 
 ## Components
 
