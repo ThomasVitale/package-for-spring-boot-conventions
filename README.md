@@ -43,7 +43,7 @@ Either way, you can then install the Spring Boot Conventions package using [`kct
 ```shell
 kctrl package install -i spring-boot-conventions \
     -p spring-boot-conventions.packages.kadras.io \
-    -v 0.1.0 \
+    -v 0.1.1 \
     -n carvel-packages
 ```
 
@@ -90,7 +90,7 @@ Then, reference it from the `kctrl` command when installing or upgrading the pac
 ```shell
 kctrl package install -i spring-boot-conventions \
     -p spring-boot-conventions.packages.kadras.io \
-    -v 0.1.0 \
+    -v 0.1.1 \
     -n carvel-packages \
     --values-file values.yml
 ```
