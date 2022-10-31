@@ -4,7 +4,6 @@ on:
   - push
 
 jobs:
-
   test-config:
     name: Configuration Tests
     permissions:
