@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
       - name: workload
-        image: ghcr.io/thomasvitale/band-service@sha256:1fdd6f5c8783270be90a369c75ac76a7f93d3b78867322b4db3eeac9baa2737c
+        image: ghcr.io/thomasvitale/band-service@sha256:9a7b4dbcfdf153994d9288f6b4d275d0b059f740b6bab0c6cd1264da3b5d0be3

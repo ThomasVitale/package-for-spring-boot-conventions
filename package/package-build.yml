@@ -19,7 +19,7 @@ spec:
           - kbld: {}
       export:
       - imgpkgBundle:
-          image: ghcr.io/arktonix/package-for-spring-boot-conventions
+          image: ghcr.io/kadras-io/package-for-spring-boot-conventions
           useKbldImagesLock: true
         includePaths:
         - config

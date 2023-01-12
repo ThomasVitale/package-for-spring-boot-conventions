@@ -24,7 +24,7 @@ metadata:
 spec:
   subject:
     organizations:
-      - Arktonix
+      - Kadras
   commonName: #@ "spring-boot-webhook." + data.values.namespace + ".svc"
   dnsNames:
     - #@ "spring-boot-webhook." + data.values.namespace + ".svc"
@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: webhook
-        image: ghcr.io/arktonix/spring-boot-conventions@sha256:6bf438a3597dbdd4381a4ae60bc3e2ef9cb4e91ddcb62b7c6d5432b920dd4955
+        image: ghcr.io/kadras-io/spring-boot-conventions@sha256:e3bd31ae344530443f197f1af19f26715af1d50c0dc7f19b1ff8d71b36c623f1
         env:
           - name: PORT
             value: "8443"

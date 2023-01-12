@@ -7,7 +7,7 @@ spec:
   licenses:
   - Apache 2.0
   refName: spring-boot-conventions.packages.kadras.io
-  releaseNotes: https://github.com/arktonix/spring-boot-conventions
+  releaseNotes: https://github.com/kadras-io/spring-boot-conventions
   releasedAt: null
   template:
     spec:
@@ -22,11 +22,12 @@ spec:
       - kbld: {}
   valuesSchema:
     openAPIv3:
+      type: object
       additionalProperties: false
       properties:
         namespace:
           type: string
-          description: The namespace where to install the Spring Boot Conventions
+          description: The namespace where to install Spring Boot Conventions
           default: spring-boot-conventions
         resources:
           type: object
@@ -68,16 +69,17 @@ metadata:
   creationTimestamp: null
   name: spring-boot-conventions.packages.kadras.io
 spec:
+  categories:
+  - ci/cd
+  - configuration
   displayName: spring-boot-conventions
-  longDescription: "The Spring Boot Convention Server works with the Cartographer Convention Controller
-    to apply best-practices to workloads at runtime by understanding the developer's intent."
-  shortDescription: "Spring Boot Convention Server for Cartographer."
+  longDescription: The Spring Boot Convention Server works with the Cartographer Convention
+    Controller to apply best-practices to workloads at runtime by understanding the
+    developer's intent.
   maintainers:
   - name: Thomas Vitale
-  providerName: Arktonix
-  categories:
-    - ci/cd
-    - configuration
+  providerName: Kadras
+  shortDescription: Spring Boot Convention Server for Cartographer.
 
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
