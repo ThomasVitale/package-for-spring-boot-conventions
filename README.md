@@ -1,6 +1,8 @@
 # Spring Boot Conventions
 
-This project provides a [Carvel package](https://carvel.dev/kapp-controller/docs/latest/packaging) for the [Spring Boot Convention Server](https://github.com/arktonix/spring-boot-conventions), a component that works with [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) to apply best-practices to workloads at runtime by understanding the developer's intent. It is a key component to build application-aware platforms rather than forcing applications to be platform-aware.
+<a href="https://slsa.dev/spec/v0.1/levels"><img src="https://slsa.dev/images/gh-badge-level3.svg" alt="The SLSA Level 3 badge"></a>
+
+This project provides a [Carvel package](https://carvel.dev/kapp-controller/docs/latest/packaging) for the [Spring Boot Convention Server](https://github.com/kadras-io/spring-boot-conventions), a component that works with [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) to apply best-practices to workloads at runtime by understanding the developer's intent. It is a key component to build application-aware platforms rather than forcing applications to be platform-aware.
 
 ## Prerequisites
 
@@ -15,25 +17,25 @@ This project provides a [Carvel package](https://carvel.dev/kapp-controller/docs
 
 ## Dependencies
 
-Spring Boot Conventions requires the Cartographer package to be already installed in the cluster. You can install it from the [Kadras package repository](https://github.com/arktonix/kadras-packages).
+Spring Boot Conventions requires the Cartographer and Cert Manager packages to be already installed in the cluster. You can install them from the [Kadras package repository](https://github.com/kadras-io/kadras-packages).
 
 ## Installation
 
-First, add the [Kadras package repository](https://github.com/arktonix/kadras-packages) to your Kubernetes cluster.
+First, add the [Kadras package repository](https://github.com/kadras-io/kadras-packages) to your Kubernetes cluster.
 
   ```shell
   kubectl create namespace kadras-packages
   kctrl package repository add -r kadras-repo \
-    --url ghcr.io/arktonix/kadras-packages \
+    --url ghcr.io/kadras-io/kadras-packages \
     -n kadras-packages
   ```
 
-Then, install the Knative Serving package.
+Then, install the Spring Boot Conventions package.
 
   ```shell
   kctrl package install -i spring-boot-conventions \
     -p spring-boot-conventions.packages.kadras.io \
-    -v 0.1.2 \
+    -v 0.1.3 \
     -n kadras-packages
   ```
 
@@ -59,7 +61,7 @@ The Spring Boot Conventions package has the following configurable properties.
 
 | Config | Default | Description |
 |-------|-------------------|-------------|
-| `namespace` | `spring-boot-conventions` | The namespace where to install the Spring Boot Conventions. |
+| `namespace` | `spring-boot-conventions` | The namespace where to install Spring Boot Conventions. |
 | `resources.limits.cpu` | `100m` | CPU limits for the Convention Server. |
 | `resources.limits.memory` | `256Mi` | Memory limits for the Convention Server. |
 | `resources.requests.cpu` | `100m` | CPU requests for the Convention Server. |
@@ -84,7 +86,7 @@ Then, reference it from the `kctrl` command when installing or upgrading the pac
   ```shell
   kctrl package install -i spring-boot-conventions \
     -p spring-boot-conventions.packages.kadras.io \
-    -v 0.1.2 \
+    -v 0.1.3 \
     -n kadras-packages \
     --values-file values.yml
   ```
@@ -109,13 +111,13 @@ You can also update an existing package with a newer `values.yml` file.
 
 ## Other
 
-The recommended way of installing the Spring Boot Conventions package is via the [Kadras package repository](https://github.com/arktonix/kadras-packages). If you prefer not using the repository, you can install the package by creating the necessary Carvel `PackageMetadata` and `Package` resources directly using [`kapp`](https://carvel.dev/kapp/docs/latest/install) or `kubectl`.
+The recommended way of installing the Spring Boot Conventions package is via the [Kadras package repository](https://github.com/kadras-io/kadras-packages). If you prefer not using the repository, you can install the package by creating the necessary Carvel `PackageMetadata` and `Package` resources directly using [`kapp`](https://carvel.dev/kapp/docs/latest/install) or `kubectl`.
 
   ```shell
   kubectl create namespace kadras-packages
   kapp deploy -a spring-boot-conventions-package -n kadras-packages -y \
-    -f https://github.com/arktonix/spring-boot-conventions/releases/latest/download/metadata.yml \
-    -f https://github.com/arktonix/spring-boot-conventions/releases/latest/download/package.yml
+    -f https://github.com/kadras-io/spring-boot-conventions/releases/latest/download/metadata.yml \
+    -f https://github.com/kadras-io/spring-boot-conventions/releases/latest/download/package.yml
   ```
 
 ## Support and Documentation
@@ -124,6 +126,6 @@ For support and documentation specific to Cartographer Conventions, check out [g
 
 ## Supply Chain Security
 
-This project is compliant with level 2 of the [SLSA Framework](https://slsa.dev).
+This project is compliant with level 3 of the [SLSA Framework](https://slsa.dev).
 
-<img src="https://slsa.dev/images/SLSA-Badge-full-level2.svg" alt="The SLSA Level 2 badge" width=200>
+<img src="https://slsa.dev/images/SLSA-Badge-full-level3.svg" alt="The SLSA Level 3 badge" width=200>

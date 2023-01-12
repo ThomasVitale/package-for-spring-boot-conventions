@@ -1,7 +1,7 @@
 #@data/values-schema
 ---
 
-#@schema/desc "The namespace where to install the Spring Boot Conventions"
+#@schema/desc "The namespace where to install Spring Boot Conventions"
 namespace: spring-boot-conventions
 
 #@schema/desc "Resource configuration for the Convention Server"
