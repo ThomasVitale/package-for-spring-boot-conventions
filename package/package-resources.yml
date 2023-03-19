@@ -7,7 +7,7 @@ spec:
   licenses:
   - Apache 2.0
   refName: spring-boot-conventions.packages.kadras.io
-  releaseNotes: https://github.com/kadras-io/spring-boot-conventions
+  releaseNotes: https://github.com/kadras-io/package-for-spring-boot-conventions/releases
   releasedAt: null
   template:
     spec:
@@ -21,45 +21,7 @@ spec:
           - config
       - kbld: {}
   valuesSchema:
-    openAPIv3:
-      type: object
-      additionalProperties: false
-      properties:
-        namespace:
-          type: string
-          description: The namespace where to install Spring Boot Conventions
-          default: spring-boot-conventions
-        resources:
-          type: object
-          additionalProperties: false
-          description: Resource configuration for the Convention Server
-          properties:
-            limits:
-              type: object
-              additionalProperties: false
-              description: Resource limits
-              properties:
-                cpu:
-                  type: string
-                  description: CPU limits
-                  default: 100m
-                memory:
-                  type: string
-                  description: Memory limits
-                  default: 256Mi
-            requests:
-              type: object
-              additionalProperties: false
-              description: Resource requests
-              properties:
-                cpu:
-                  type: string
-                  description: CPU requests
-                  default: 100m
-                memory:
-                  type: string
-                  description: Memory requests
-                  default: 20Mi
+    openAPIv3: {}
   version: 0.0.0
 
 ---
@@ -80,6 +42,8 @@ spec:
   - name: Thomas Vitale
   providerName: Kadras
   shortDescription: Spring Boot Convention Server for Cartographer.
+  supportDescription: Go to https://kadras.io for documentation and https://github.com/kadras-io/package-for-spring-boot-conventions
+    for community support.
 
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
