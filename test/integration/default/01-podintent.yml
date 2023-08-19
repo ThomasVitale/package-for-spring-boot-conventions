@@ -3,6 +3,7 @@ apiVersion: conventions.carto.run/v1alpha1
 kind: PodIntent
 metadata:
   name: band-service
+  namespace: tests
 spec:
   template:
     spec:
