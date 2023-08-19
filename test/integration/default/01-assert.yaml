@@ -1,0 +1,15 @@
+---
+apiVersion: conventions.carto.run/v1alpha1
+kind: PodIntent
+metadata:
+  name: band-service
+status:
+  template:
+    metadata:
+      annotations:
+        conventions.carto.run/applied-conventions: |-
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          spring-boot-convention/spring-boot-actuator
+          spring-boot-convention/spring-boot-actuator-probes

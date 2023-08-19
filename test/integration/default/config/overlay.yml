@@ -1,0 +1,9 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"metadata":{"name":"spring-boot-conventions"}, "kind":"PackageInstall"})
+---
+spec:
+  #@overlay/match missing_ok=True
+  values:
+    - secretRef:
+        name: spring-boot-conventions-values
