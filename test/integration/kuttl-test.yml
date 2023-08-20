@@ -1,0 +1,34 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestSuite
+testDirs:
+- ./test/integration
+manifestDirs:
+- ./test/setup/assets
+parallel: 1
+startKIND: true
+kindContext: integration
+kindNodeCache: true
+timeout: 300
+artifactsDir: /tmp/kuttl-artifacts
+commands:
+  - script: |
+      kapp deploy -a kapp-controller -y \
+        -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a secretgen-controller-package -y \
+        -f https://github.com/kadras-io/package-for-secretgen-controller/releases/download/v0.14.8/package.yml \
+        -f https://github.com/kadras-io/package-for-secretgen-controller/releases/download/v0.14.8/metadata.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a cert-manager-package -y \
+        -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.12.3/package.yml \
+        -f https://github.com/kadras-io/package-for-cert-manager/releases/download/v1.12.3/metadata.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a cartographer-package -y \
+        -f https://github.com/kadras-io/package-for-cartographer/releases/download/v0.7.3/package.yml \
+        -f https://github.com/kadras-io/package-for-cartographer/releases/download/v0.7.3/metadata.yml
+  - script: |
+      kubectl config set-context --current --namespace=tests && \
+      kapp deploy -a dependencies -y -f ./test/setup/dependencies
