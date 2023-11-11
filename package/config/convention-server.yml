@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: webhook
-        image: ghcr.io/kadras-io/spring-boot-conventions@sha256:5e849065098fd028a36d6e0bd8d99db7f311eaaa40a7b59bf891c97cbdda80aa
+        image: ghcr.io/kadras-io/spring-boot-conventions@sha256:476480afcab950773804125a135fe837cc5e9f95d201fd8a66bde341a199dabc
         env:
           - name: PORT
             value: "8443"
