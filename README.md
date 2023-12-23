@@ -6,6 +6,9 @@
 [![The Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Follow us on Twitter](https://img.shields.io/static/v1?label=Twitter&message=Follow&color=1DA1F2)](https://twitter.com/kadrasIO)
 
+> **Warning**
+> This repository will be archived soon since the upstream Cartographer Conventions project is not actively developer anymore. The Kadras conventions are now included in the [https://github.com/kadras-io/supply-chains](supply-chains) package.
+
 A Carvel package for the [Spring Boot Convention Server](https://github.com/kadras-io/spring-boot-conventions), a component that works with [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) to apply best-practices to workloads at runtime by understanding the developer's intent. It is a key component to build application-aware platforms rather than forcing applications to be platform-aware.
 
 ## 🚀&nbsp; Getting Started
